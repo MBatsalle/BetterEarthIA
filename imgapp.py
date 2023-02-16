@@ -7,7 +7,7 @@ import pickle
 from PIL import Image
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('Image Classifier using Machine Learning')
-st.text('Upload the Image from the listed category.\n[CardBoard, Glass, Metal, Plastic, Paper, Trash]')
+st.text('Upload the Image from the listed category.\n[CardBoard, Glass, Plastic, Paper, Trash]')
 
 model = pickle.load(open('img_model.p','rb'))
 
@@ -26,7 +26,6 @@ if uploaded_file is not None:
     flat_data = np.array(flat_data)
     y_out = model.predict(flat_data)
     q = model.predict_proba(flat_data)
-    st.write(q)
     for index, item in enumerate(Categories):
       st.write(f'{item} : {q[0][index]*100}%')
 
